@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Counter Program</title>
+    <style>
+      body {
+        background-color: rgb(44, 44, 44);
+      }
+      #countLabel {
+        display: block;
+        text-align: center;
+        font-size: 10em;
+        font-family: Helvetica;
+        color: aliceblue;
+      }
+      #btn-container {
+        text-align: center;
+      }
+      .buttons {
+        padding: 10px 20px;
+        font-size: 1.2em;
+        color: antiquewhite;
+        background-color: rgb(255, 192, 57);
+        border-radius: 15px;
+        cursor: pointer;
+        transition: background-color 0.25s;
+      }
+      .buttons:hover {
+        background-color: rgb(255, 150, 30);
+      }
+    </style>
+  </head>
+  <body>
+    <label id="countLabel">0</label>
+    <br />
+
+    <div id="btn-container">
+      <button id="decrease-btn" class="buttons" onclick="decrease()">
+        Decrease
+      </button>
+      <button id="reset-btn" class="buttons" onclick="reset()">Reset</button>
+      <button id="increase-btn" class="buttons" onclick="increase()">
+        Increase
+      </button>
+    </div>
+    <script>
+      const decreasebtn = document.getElementById("decrease-btn");
+      const resetbtn = document.getElementById("reset-btn");
+      const increasebtn = document.getElementById("increase-btn");
+      const countlabel = document.getElementById("countLabel");
+      let count = 0;
+
+      function increase() {
+        count = count + 1;
+        countlabel.textContent = count;
+      }
+
+      function decrease() {
+        count = count - 1;
+        countlabel.textContent = count;
+      }
+
+      function reset() {
+        count = 0;
+        countlabel.textContent = count;
+      }
+    </script>
+  </body>
+</html>
