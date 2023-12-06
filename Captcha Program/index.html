@@ -34,81 +34,104 @@
   </head>
   <body>
     <div id="container">
-      <h1>ABCDEF</h1>
+      <h1 id="captcha-container">ABCDEF</h1>
       <br />
       <!-- <input type="text" id="captcha-holder" /><br /> -->
       <input type="text" id="captcha-input" /><br />
-      <button>Submit</button>
+      <button onclick="submit()">Submit</button>
+      <button onclick="reset()">Reset</button>
     </div>
     <script>
-      let list = [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E",
-        "F",
-        "G",
-        "H",
-        "I",
-        "J",
-        "K",
-        "L",
-        "M",
-        "N",
-        "O",
-        "P",
-        "Q",
-        "R",
-        "S",
-        "T",
-        "U",
-        "V",
-        "W",
-        "X",
-        "Y",
-        "Z",
-        "a",
-        "b",
-        "c",
-        "d",
-        "e",
-        "f",
-        "g",
-        "h",
-        "i",
-        "j",
-        "k",
-        "l",
-        "m",
-        "n",
-        "o",
-        "p",
-        "q",
-        "r",
-        "s",
-        "t",
-        "u",
-        "v",
-        "w",
-        "x",
-        "y",
-        "z",
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-      ];
-      let len = list.length;
-      let captcha=""
-      for (i=0;i++;i<=6){
-        captcha+=Math.floor(Math.random())
+      function generate() {
+        let list = [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J",
+          "K",
+          "L",
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z",
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+          "g",
+          "h",
+          "i",
+          "j",
+          "k",
+          "l",
+          "m",
+          "n",
+          "o",
+          "p",
+          "q",
+          "r",
+          "s",
+          "t",
+          "u",
+          "v",
+          "w",
+          "x",
+          "y",
+          "z",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+        ];
+        let len = list.length;
+        let res = "";
+        for (i = 0; i < 6; i++) {
+          c = Math.floor(Math.random() * len);
+          res = res + list[c];
+        }
+        return res;
+      }
+      let captcha = generate();
+
+      const display = document.getElementById("captcha-container");
+      const captchaInp = document.getElementById("captcha-input");
+      display.innerHTML = captcha;
+      function reset() {
+        let captcha = generate();
+        display.innerHTML = captcha;
+        captchaInp.value = "";
+      }
+      function submit() {
+        res = captchaInp.value;
+        if (captcha == res) {
+          window.alert("success");
+        } else {
+          window.alert("Failure");
+        }
       }
     </script>
   </body>
