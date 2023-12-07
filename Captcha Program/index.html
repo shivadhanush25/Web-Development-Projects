@@ -42,6 +42,8 @@
       <button onclick="reset()">Reset</button>
     </div>
     <script>
+      const display = document.getElementById("captcha-container");
+      const captchaInp = document.getElementById("captcha-input");
       function generate() {
         let list = [
           "A",
@@ -113,25 +115,24 @@
           c = Math.floor(Math.random() * len);
           res = res + list[c];
         }
-        return res;
+        console.log(res);
+        display.innerHTML = res;
       }
-      let captcha = generate();
+      generate();
 
-      const display = document.getElementById("captcha-container");
-      const captchaInp = document.getElementById("captcha-input");
-      display.innerHTML = captcha;
-      function reset() {
-        let captcha = generate();
-        display.innerHTML = captcha;
-        captchaInp.value = "";
-      }
       function submit() {
-        res = captchaInp.value;
-        if (captcha == res) {
-          window.alert("success");
+        let captcha = display.innerHTML;
+        res1 = captchaInp.value;
+        if (captcha == res1) {
+          console.log("Success");
         } else {
-          window.alert("Failure");
+          console.log("Failure");
         }
+      }
+
+      function reset() {
+        generate();
+        captchaInp.value = "";
       }
     </script>
   </body>
