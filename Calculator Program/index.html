@@ -5,50 +5,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        #container{
-            
-        }
+      body {
+        background-color: hsl(0, 0%, 12%);
+      }
+      #container {
+        margin-top: 40px;
+        margin-left: 45%;
+      }
+
       table {
-        border: 2px solid black;
+        border: 2px solid white;
+      }
+      .button {
+        width: 50px;
+        height: 50px;
+        color: white;
+        font-family: "Courier New", Courier, monospace;
+        font-weight: 300;
+        font-size: 1.2em;
+        background-color: hsl(49, 98%, 59%);
+        border: none;
+        border-radius: 10px;
+      }
+      .button:hover {
+        background-color: hsl(49, 98%, 40%);
+      }
+      #plus {
+        height: 105px;
+      }
+      #display {
+        font-size: 1.2em;
+        color: white;
+        text-align: right;
       }
     </style>
   </head>
   <body>
     <div id="container">
-      <div id="display">
-        <h1>123+45+6</h1>
-        <h2>023</h2>
-      </div>
       <table>
         <tr>
-          <td><button>%</button></td>
-          <td><button>/</button></td>
-          <td><button>x</button></td>
-          <td><button>-</button></td>
+          <td colspan="4" id="display">
+            <h4 id="inp">0</h4>
+            <h2 id="disp">0</h2>
+          </td>
         </tr>
         <tr>
-          <td><button>7</button></td>
-          <td><button>8</button></td>
-          <td><button>9</button></td>
-          <td rowspan="2"><button>+</button></td>
+          <td><button class="button" onclick="inputs('%')">%</button></td>
+          <td><button class="button" onclick="inputs('/')">/</button></td>
+          <td><button class="button" onclick="inputs('*')">x</button></td>
+          <td><button class="button" onclick="inputs('-')">-</button></td>
         </tr>
         <tr>
-          <td><button>4</button></td>
-          <td><button>5</button></td>
-          <td><button>6</button></td>
+          <td><button class="button" onclick="inputs('7')">7</button></td>
+          <td><button class="button" onclick="inputs('8')">8</button></td>
+          <td><button class="button" onclick="inputs('9')">9</button></td>
+          <td rowspan="2">
+            <button class="button" id="plus" onclick="inputs('+')">+</button>
+          </td>
         </tr>
         <tr>
-          <td><button>1</button></td>
-          <td><button>2</button></td>
-          <td><button>3</button></td>
-          <td rowspan="2"><button>=</button></td>
+          <td><button class="button" onclick="inputs('4')">4</button></td>
+          <td><button class="button" onclick="inputs('5')">5</button></td>
+          <td><button class="button" onclick="inputs('6')">6</button></td>
         </tr>
         <tr>
-          <td><button>0</button></td>
-          <td><button>.</button></td>
-          <td><button>AC</button></td>
+          <td><button class="button" onclick="inputs('1')">1</button></td>
+          <td><button class="button" onclick="inputs('2')">2</button></td>
+          <td><button class="button" onclick="inputs('3')">3</button></td>
+          <td rowspan="2">
+            <button class="button" id="plus" onclick="evaluation()">=</button>
+          </td>
+        </tr>
+        <tr>
+          <td><button class="button" onclick="inputs('0')">0</button></td>
+          <td><button class="button" onclick="inputs('.')">.</button></td>
+          <td><button class="button" onclick="ac()">AC</button></td>
         </tr>
       </table>
     </div>
+    <script>
+      function inputs(op) {
+        let res = document.getElementById("inp").innerHTML;
+        if (res == 0) {
+          res = "";
+        }
+        res += op;
+        document.getElementById("inp").textContent = res;
+      }
+      function evaluation() {
+        let res = document.getElementById("inp").textContent;
+        let b = eval(res);
+        document.getElementById("disp").textContent = b;
+      }
+      function ac() {
+        document.getElementById("inp").textContent = 0;
+        document.getElementById("disp").textContent = 0;
+      }
+    </script>
   </body>
 </html>
